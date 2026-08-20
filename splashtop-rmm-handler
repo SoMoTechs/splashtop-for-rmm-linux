@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Handles st-rmm:// URLs from your RMM -> Splashtop for RMM viewer under Wine.
+# Requires Wine >= 9.3 (WineHQ bug #56244). See README.
+export WINEPREFIX="${WINEPREFIX:-$HOME/.wine-splashtop}"
+export WINEDEBUG=-all
+CLIENT="$WINEPREFIX/drive_c/Program Files (x86)/Splashtop/Splashtop Remote/Client for RMM/clientoobe.exe"
+LOG="$HOME/.wine-splashtop/handler.log"
+
+url="$1"
+# strip scheme and any trailing slash the browser tacks on
+payload="${url#st-rmm://}"
+payload="${payload%/}"
+
+{ echo "--- $(date -Is)"; echo "raw:     $url"; echo "payload: $payload"; } >> "$LOG"
+
+if [ ! -f "$CLIENT" ]; then
+  echo "ERROR: clientoobe.exe missing at $CLIENT" >> "$LOG"
+  exit 1
+fi
+
+exec wine "$CLIENT" -a "$payload" >> "$LOG" 2>&1

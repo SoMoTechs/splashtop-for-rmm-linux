@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Splashtop for RMM
+Comment=Splashtop RMM viewer (Wine) — handles st-rmm:// links from your RMM
+Exec=__HOME__/bin/splashtop-rmm-handler %u
+Icon=__HOME__/.wine-splashtop/drive_c/Program Files (x86)/Splashtop/Splashtop Remote/Client for RMM/strwinclt.exe
+Terminal=false
+Categories=Network;RemoteAccess;
+MimeType=x-scheme-handler/st-rmm;
