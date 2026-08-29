@@ -1,0 +1,1 @@
+Gitea -> GitHub push-mirror test, 2026-08-29T01:46:08Z. Safe to delete.
